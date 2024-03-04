@@ -16,7 +16,7 @@ $env | Add-Member -Type ScriptMethod -Value { param( [string]$key, [object]$val,
 function setupEnv() {
     # Preload subscriptionId and tenant from context, which will be used in test
     # as default. You could change them if needed.
-    #Select-AzSubscription -SubscriptionId d1cd48f9-b94b-4645-9632-634b440db393
+    #Select-AzSubscription -SubscriptionId d1cd48f9-b94b-4645-9632-634b440db393 -Tenant 72f988bf-86f1-41af-91ab-2d7cd011db47
 
     $env.SubscriptionId = (Get-AzContext).Subscription.Id
     $env.Tenant = (Get-AzContext).Tenant.Id
@@ -48,6 +48,9 @@ function setupEnv() {
     $env.imageID3 = 'a04f0a91-b369-4249-a47d-28c118e2cb3b'
     # HelloWorld_HighLevelApp.imagepackage
     $env.imageID4 = '9c6b0d1a-3f78-4382-86dd-371aabc3e006'
+
+    $imagecontext1 = [system.io.file]::ReadAllBytes(Join-Path $PSScriptRoot '.\imagefile\AzureSphereBlink1.imagepackage')
+    $base64str1 = [system.convert]::ToBase64String($imagecontext1)
     
     Write-Host 'Start to create test resource group' $env.resourceGroup
     try {
@@ -70,7 +73,7 @@ function setupEnv() {
     New-AzSphereDevice -CatalogName $env.firstCatalog -GroupName $env.firstDeviceGroup -Name $env.deviceID1 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
     New-AzSphereDevice -CatalogName $env.firstCatalog -GroupName $env.firstDeviceGroup -Name $env.deviceID2 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
 
-    New-AzSphereImage -CatalogName $env.firstCatalog -ResourceGroupName $env.resourceGroup -Name .default -ImageId $env.imageID1
+    New-AzSphereImage -CatalogName $env.firstCatalog -ResourceGroupName $env.resourceGroup -Name $env.imageID1 -Image $base64str1
 
     # For any resources you created for test, you should add it to $env here.
     $envFile = 'env.json'

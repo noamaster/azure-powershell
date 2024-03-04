@@ -17,7 +17,7 @@ if(($null -eq $TestName) -or ($TestName -contains 'Remove-AzSphereDeviceGroup'))
 Describe 'Remove-AzSphereDeviceGroup' {
     It 'Delete' -skip {
         {
-            Remove-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.firstDeviceGroup -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
+            Remove-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.anotherDeviceGroup -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
         } | Should -Not -Throw
     }
 
@@ -31,7 +31,7 @@ Describe 'Remove-AzSphereDeviceGroup' {
 
     It 'DeleteViaIdentity' {
         {
-            Get-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.firstDeviceGroup -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup | Remove-AzSphereDeviceGroup
+            Get-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.anotherDeviceGroup2 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup | Remove-AzSphereDeviceGroup
         } | Should -Not -Throw
     }
 }

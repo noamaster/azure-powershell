@@ -17,7 +17,7 @@ if(($null -eq $TestName) -or ($TestName -contains 'New-AzSphereDeviceCapabilityI
 Describe 'New-AzSphereDeviceCapabilityImage' {
     It 'GenerateExpanded' {
         {
-            New-AzSphereDeviceCapabilityImage -CatalogName $env.firstCatalog -DeviceGroupName $env.firstDeviceGroup -DeviceName $env.deviceID1 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup -Capability
+            New-AzSphereDeviceCapabilityImage -CatalogName $env.firstCatalog -DeviceGroupName $env.firstDeviceGroup -DeviceName $env.deviceID1 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup -Capability 'ApplicationDevelopment'
         } | Should -Not -Throw
     }
 

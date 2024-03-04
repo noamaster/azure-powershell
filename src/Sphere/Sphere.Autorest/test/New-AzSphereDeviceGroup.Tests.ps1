@@ -17,7 +17,8 @@ if(($null -eq $TestName) -or ($TestName -contains 'New-AzSphereDeviceGroup'))
 Describe 'New-AzSphereDeviceGroup' {
     It 'CreateExpanded' {
         {
-            New-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.firstDeviceGroup -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
+            New-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.anotherDeviceGroup -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
+            New-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.anotherDeviceGroup2 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
         } | Should -Not -Throw
     }
 
