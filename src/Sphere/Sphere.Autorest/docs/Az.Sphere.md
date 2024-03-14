@@ -14,9 +14,6 @@ Microsoft Azure PowerShell: Sphere cmdlets
 ### [Get-AzSphereCatalog](Get-AzSphereCatalog.md)
 Get a Catalog
 
-### [Get-AzSphereCatalogDeployment](Get-AzSphereCatalogDeployment.md)
-Lists deployments for catalog.
-
 ### [Get-AzSphereCatalogDevice](Get-AzSphereCatalogDevice.md)
 Lists devices for catalog.
 
@@ -93,6 +90,10 @@ Create a Image
 
 ### [New-AzSphereProduct](New-AzSphereProduct.md)
 Create a Product.
+'.default' and '.unassigned' are system defined values and cannot be used for product name.
+
+### [New-AzSphereProductDefaultDeviceGroup](New-AzSphereProductDefaultDeviceGroup.md)
+Generates default device groups for the product.
 '.default' and '.unassigned' are system defined values and cannot be used for product name.
 
 ### [Remove-AzSphereCatalog](Remove-AzSphereCatalog.md)

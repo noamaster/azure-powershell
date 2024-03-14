@@ -9,8 +9,7 @@ New-AzSphereImage -CatalogName test2024 -ResourceGroupName joyer-test -Name 14a6
 ```output
 ComponentId                  : 42257ad6-382d-405f-b7cc-e110fbda2d0b
 Description                  : 
-Id                           : /subscriptions/d1cd48f9-b94b-4645-9632-634b440db393/resourceGroups/joyer-test/providers/Microsoft.AzureSphere/catalogs/test2024/images/14a6729e-5819-4737-8713-37b4 
-                               798533f8
+Id                           : /subscriptions/d1cd48f9-b94b-4645-9632-634b440db393/resourceGroups/joyer-test/providers/Microsoft.AzureSphere/catalogs/test2024/images/14a6729e-5819-4737-8713-37b4798533f8
 ImageId                      : 14a6729e-5819-4737-8713-37b4798533f8
 ImageName                    : 
 ImageType                    : Applications

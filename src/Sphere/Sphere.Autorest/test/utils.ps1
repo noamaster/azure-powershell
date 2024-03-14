@@ -26,14 +26,13 @@ function setupEnv() {
     $env.globalLocation = 'Global'
     $env.firstCatalog = 'firstCatalog'
     $env.secondCatalog = 'secondCatalog'
-    $env.anotherCatalog = 'psCatalog3'
-    $env.firstProduct = 'Product1'
-    $env.secondProduct = 'Product2'
+    $env.firstProduct = 'Product1' #main product
+    $env.secondProduct = 'Product2' #Test device assign product
     $env.anotherProduct = 'Product3'
-    $env.firstDeviceGroup = 'DeviceGroup1'
-    $env.secondDeviceGroup = 'DeviceGroup2'
-    $env.anotherDeviceGroup = 'DeviceGroup3'
-    $env.anotherDeviceGroup2 = 'DeviceGroup4'
+    $env.DevDeviceGroup = 'Development'
+    $env.TestDeviceGroup = 'Field Test'
+    $env.ProdDeviceGroup = 'Production'
+    $env.anotherDeviceGroup = 'DeviceGroupTrans'
 
     $env.deviceID1 = '9821102AB4BD238196247124795853BCEC5F1150CD6F802A22EB3713C5B945EAD6DFC4C2354CF89E20842769DBDEB013F6F5F94D604399A0D03ADE424207234B'
     $env.deviceID2 = 'B15332603BA55FB52B00FEC8549FDAA46B7FB6BA35694BC8943131CCB4B302846D224580A27880A2996B9FD4F1B2699400B1627059B6A90D67DD29E2984EE147'
@@ -49,9 +48,16 @@ function setupEnv() {
     # HelloWorld_HighLevelApp.imagepackage
     $env.imageID4 = '9c6b0d1a-3f78-4382-86dd-371aabc3e006'
 
-    $imagecontext1 = [system.io.file]::ReadAllBytes(Join-Path $PSScriptRoot '.\imagefile\AzureSphereBlink1.imagepackage')
-    $base64str1 = [system.convert]::ToBase64String($imagecontext1)
-    
+    $imagePath1 = Join-Path $PSScriptRoot '.\imagefile\AzureSphereBlink1.imagepackage'
+    $imagePath2 = Join-Path $PSScriptRoot '.\imagefile\ErrorReporting.imagepackage'
+    $imagePath3 = Join-Path $PSScriptRoot '.\imagefile\GPIO_HighLevelApp.imagepackage'
+    $imagePath4 = Join-Path $PSScriptRoot '.\imagefile\HelloWorld_HighLevelApp.imagepackage'
+
+    $env.imagecontext1 = [system.io.file]::ReadAllBytes($imagePath1)
+    $env.imagecontext2 = [system.io.file]::ReadAllBytes($imagePath2)
+    $env.imagecontext3 = [system.io.file]::ReadAllBytes($imagePath3)
+    $env.imagecontext4 = [system.io.file]::ReadAllBytes($imagePath4)
+
     Write-Host 'Start to create test resource group' $env.resourceGroup
     try {
         Get-AzResourceGroup -Name $env.resourceGroup -ErrorAction Stop
@@ -59,21 +65,6 @@ function setupEnv() {
     } catch {
         New-AzResourceGroup -Name $env.resourceGroup -Location $env.region
     }
-    Write-Host 'Start to create test catalog' $env.firstCatalog $env.secondCatalog
-    New-AzSphereCatalog -Name $env.firstCatalog -ResourceGroupName $env.resourceGroup -Location $env.globalLocation
-    New-AzSphereCatalog -Name $env.secondCatalog -ResourceGroupName $env.resourceGroup -Location $env.globalLocation
-
-    Write-Host 'Start to create test resource group'
-    New-AzSphereProduct -CatalogName $env.firstCatalog -Name $env.firstProduct -ResourceGroupName $env.resourceGroup
-    New-AzSphereProduct -CatalogName $env.firstCatalog -Name $env.secondProduct -ResourceGroupName $env.resourceGroup
-
-    New-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.firstDeviceGroup -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
-    New-AzSphereDeviceGroup -CatalogName $env.firstCatalog -Name $env.secondDeviceGroup -ProductName $env.secondProduct -ResourceGroupName $env.resourceGroup
-
-    New-AzSphereDevice -CatalogName $env.firstCatalog -GroupName $env.firstDeviceGroup -Name $env.deviceID1 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
-    New-AzSphereDevice -CatalogName $env.firstCatalog -GroupName $env.firstDeviceGroup -Name $env.deviceID2 -ProductName $env.firstProduct -ResourceGroupName $env.resourceGroup
-
-    New-AzSphereImage -CatalogName $env.firstCatalog -ResourceGroupName $env.resourceGroup -Name $env.imageID1 -Image $base64str1
 
     # For any resources you created for test, you should add it to $env here.
     $envFile = 'env.json'
@@ -84,6 +75,5 @@ function setupEnv() {
 }
 function cleanupEnv() {
     # Clean resources you create for testing
-    Remove-AzSphereCatalog -Name $env.anotherCatalog -ResourceGroupName $env.resourceGroup
 }
 

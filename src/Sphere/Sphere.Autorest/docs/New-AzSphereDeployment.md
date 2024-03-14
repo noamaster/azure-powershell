@@ -40,7 +40,7 @@ Create a Deployment.
 
 ## EXAMPLES
 
-### Example 1: {{ Add title here }}
+### Example 1: Create a deployment with deployed image
 ```powershell
 $image1 = Get-AzSphereImage -Name '14a6729e-5819-4737-8713-37b4798533f8' -CatalogName test2024 -ResourceGroupName joyer-test
 New-AzSphereDeployment -Name .default -CatalogName test2024 -DeviceGroupName testdevicegroup -ProductName product2024 -ResourceGroupName joyer-test -DeployedImage $image1
@@ -80,7 +80,7 @@ SystemDataLastModifiedByType :
 Type                         : Microsoft.AzureSphere/catalogs/products/deviceGroups/deployments
 ```
 
-{{ Add description here }}
+This command create a deployment with deployed images.
 
 ## PARAMETERS
 

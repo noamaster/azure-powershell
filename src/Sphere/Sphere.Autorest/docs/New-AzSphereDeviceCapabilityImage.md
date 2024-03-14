@@ -34,12 +34,6 @@ New-AzSphereDeviceCapabilityImage -DeviceGroupInputObject <ISphereIdentity> -Dev
  [<CommonParameters>]
 ```
 
-### GenerateViaIdentityExpanded
-```
-New-AzSphereDeviceCapabilityImage -InputObject <ISphereIdentity> -Capability <String[]>
- [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
-```
-
 ### GenerateViaIdentityProductExpanded
 ```
 New-AzSphereDeviceCapabilityImage -DeviceGroupName <String> -DeviceName <String>
@@ -102,7 +96,7 @@ List of capabilities to create
 
 ```yaml
 Type: System.String[]
-Parameter Sets: GenerateExpanded, GenerateViaIdentityCatalogExpanded, GenerateViaIdentityDeviceGroupExpanded, GenerateViaIdentityExpanded, GenerateViaIdentityProductExpanded
+Parameter Sets: GenerateExpanded, GenerateViaIdentityCatalogExpanded, GenerateViaIdentityDeviceGroupExpanded, GenerateViaIdentityProductExpanded
 Aliases:
 
 Required: True
@@ -195,29 +189,13 @@ Device name
 
 ```yaml
 Type: System.String
-Parameter Sets: GenerateExpanded, GenerateViaIdentityCatalogExpanded, GenerateViaIdentityDeviceGroupExpanded, GenerateViaIdentityProductExpanded, GenerateViaJsonFilePath, GenerateViaJsonString
+Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InputObject
-Identity Parameter
-To construct, see NOTES section for INPUTOBJECT properties and create a hash table.
-
-```yaml
-Type: Microsoft.Azure.PowerShell.Cmdlets.Sphere.Models.ISphereIdentity
-Parameter Sets: GenerateViaIdentityExpanded
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 

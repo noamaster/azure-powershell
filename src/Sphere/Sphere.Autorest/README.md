@@ -54,7 +54,7 @@ directive:
   # 1. Remove the unexpanded parameter set
   # 2. For New-* cmdlets, ViaIdentity is not required
   - where:
-      variant: ^(Create|Update|Generate)(?!.*?Expanded|ViaJsonString|ViaJsonFilePath)
+      variant: ^(Create|Update)(?!.*?Expanded|ViaJsonString|ViaJsonFilePath)
     remove: true
   - where:
       variant: ^CreateViaIdentity.*$
@@ -72,6 +72,10 @@ directive:
       verb: Invoke
       subject: UploadCatalogImage
     remove: true
+  - where:
+      verb: Get
+      subject: CatalogDeployment
+    remove: true
   # Remove unexpanded include json parameter set
   - where:
       variant: ^List(?!.*?Expanded)
@@ -85,6 +89,15 @@ directive:
       variant: ^Claim(?!.*?Expanded)
       subject: ClaimDeviceGroupDevice
     hide: true
+  # New-AzSphereDeviceCapabilityImage
+  - where:
+      variant: ^(Generate)(?!.*?(Expanded|JsonString|JsonFilePath))
+      subject: DeviceCapabilityImage
+    remove: true
+  - where:
+      variant: GenerateViaIdentityExpanded
+      subject: DeviceCapabilityImage
+    remove: true
   # Remove the set-* cmdlet
   - where:
       verb: Set
