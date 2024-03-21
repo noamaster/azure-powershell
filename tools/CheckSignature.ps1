@@ -21,6 +21,7 @@ Param
 function Check-StrongName {
     [CmdletBinding()]
     param([Parameter(ValueFromPipeline=$true)][string]$path)
+    Write-Output $path
     $output = & "sn.exe" -vf $path
     $length = $output.Length - 1
     if (-not $output[$length].Contains("is valid")) {
@@ -31,6 +32,7 @@ function Check-StrongName {
 function Check-AuthenticodeSignature {
     [CmdletBinding()]
     param([Parameter(ValueFromPipeline=$true)][string]$path)
+    Write-Output $path
     $output = Get-AuthenticodeSignature $path
     if (-not ($output.Status -like "Valid")) {
         Write-Output "$path has an invalid authenticode signature. Status is $($output.Status)"
